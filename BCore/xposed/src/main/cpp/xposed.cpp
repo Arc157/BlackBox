@@ -11,7 +11,7 @@ void *inlineHooker(void *targetFunc, void *replaceFunc) {
     mprotect((void *) funcAddress, pageSize, PROT_READ | PROT_WRITE | PROT_EXEC);
 
     void *originalFunc;
-    if (DobbyHook(targetFunc, (dobby_dummy_func_t) replaceFunc, (dobby_dummy_func_t *) &originalFunc) == RS_SUCCESS) {
+    if (DobbyHook(targetFunc, replaceFunc, &originalFunc) == RS_SUCCESS) {
         return originalFunc;
     }
     return nullptr;

@@ -14,17 +14,12 @@ project(blackbox)
 include_directories(JniHook)
 include_directories(./)
 
-set(DobbyHome Dobby)
-include_directories(
-        ${DobbyHome}/include
-)
 macro(SET_OPTION option value)
     set(${option} ${value} CACHE INTERNAL "" FORCE)
 endmacro()
 SET_OPTION(DOBBY_DEBUG OFF)
 SET_OPTION(DOBBY_GENERATE_SHARED OFF)
 
-add_subdirectory(${DobbyHome} dobby)
 aux_source_directory(./ SRC1)
 aux_source_directory(Hook SRC2)
 aux_source_directory(JniHook SRC3)
@@ -57,10 +52,11 @@ find_library( # Sets the name of the path variable.
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
+find_package(dobby REQUIRED CONFIG)
 target_link_libraries( # Specifies the target library.
         blackbox
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
         z
-        dobby)
+        dobby::dobby)

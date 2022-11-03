@@ -14,16 +14,11 @@ project("xposed")
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
-set(DobbyHome Dobby)
-include_directories(
-        ${DobbyHome}/include
-)
 macro(SET_OPTION option value)
     set(${option} ${value} CACHE INTERNAL "" FORCE)
 endmacro()
 SET_OPTION(DOBBY_DEBUG OFF)
 SET_OPTION(DOBBY_GENERATE_SHARED OFF)
-add_subdirectory(${DobbyHome} dobby)
 add_library( # Sets the name of the library.
              xposed
 
@@ -51,6 +46,7 @@ find_library( # Sets the name of the path variable.
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
+find_package(dobby REQUIRED CONFIG)
 find_package(lsplant REQUIRED CONFIG)
 target_link_libraries( # Specifies the target library.
                        xposed
@@ -58,5 +54,5 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib}
-                       dobby
+                       dobby::dobby
                        lsplant::lsplant)
