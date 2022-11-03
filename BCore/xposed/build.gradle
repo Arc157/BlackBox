@@ -70,5 +70,6 @@ tasks.withType(Javadoc) {
 }
 
 dependencies {
+    implementation 'io.github.vvb2060.ndk:dobby:1.2'
     implementation 'org.lsposed.lsplant:lsplant-standalone:5.0'
 }

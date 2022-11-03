@@ -63,6 +63,7 @@ tasks.withType(Javadoc) {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'io.github.vvb2060.ndk:dobby:1.2'
 
     implementation "org.lsposed.hiddenapibypass:hiddenapibypass:$rootProject.ext.hiddenApiBypass"
     implementation "com.iqiyi.xcrash:xcrash-android-lib:$rootProject.ext.xCrash"
